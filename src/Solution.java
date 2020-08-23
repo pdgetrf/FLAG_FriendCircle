@@ -1,23 +1,29 @@
-import java.util.HashSet;
-import java.util.Set;
-
 class Solution {
     public static int findCircleNum(int[][] M) {
+        if (M == null || M.length == 0) {
+            return 0;
+        }
+
+        int ans = 0;
         int size = M.length;
-        UnionSet us = new UnionSet(size);
-
+        int[] visited = new int[size];
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (M[i][j] == 1) {
-                    us.Union(i, j);
-                }
+            if (visited[i] == 1) {
+                continue;
             }
+            ans++;
+            helper(M, i, visited);
         }
+        return ans;
+    }
 
-        Set<Integer> result = new HashSet<>();
-        for (int i = 0; i < size; i++) {
-            result.add(us.Find(i));
+    private static void helper(int[][] M, int visiting, int[] visited) {
+        for (int i = 0; i < M.length; ++i) {
+            if (visited[i] == 1 || M[visiting][i] == 0) {
+                continue;
+            }
+            visited[i] = 1;
+            helper(M, i, visited);
         }
-        return result.size();
     }
 }
