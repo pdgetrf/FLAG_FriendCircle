@@ -31,8 +31,10 @@ public class BitMaskTest {
 
     @Test
     public void testMultipleSetsOddPosition() {
-        //testMultiplePositions(2);
-        testMultiplePositions(3);
+        testMultiplePositionsTill200(2);
+        testMultiplePositionsTill200(3);
+        testMultiplePositionsTill200(5);
+        testMultiplePositionsTill200(7);
     }
 
     private void testGetAndSet(BitMask mask, int bit) {
@@ -41,22 +43,17 @@ public class BitMaskTest {
         assertTrue(mask.get(bit));
     }
 
-    private void testMultiplePositions(int mod) {
+    private void testMultiplePositionsTill200(int mod) {
         BitMask mask = new BitMask();
-        for (int i = 0; i < 240; i++) {
+        for (int i = 0; i < 200; i++) {
             if (i % mod == 0) {
-                System.out.println(i + " " + mask.get(1) + ",");
                 mask.setTrue(i);
             }
         }
-        System.out.println("\n");
-
-        for (int i = 0; i < 240; i++) {
+        for (int i = 0; i < 200; i++) {
             if (i % mod != 0) {
-                System.out.println("i = " + i + " expecting false, actual " + mask.get(i));
                 assertFalse(mask.get(i));
             } else {
-                System.out.println("i = " + i + " expecting true");
                 assertTrue(mask.get(i));
             }
         }

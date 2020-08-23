@@ -1,6 +1,5 @@
 public class BitMask {
     private long[] bits = new long[4];
-    public int MAX_SIZE = 256;
 
     public void setTrue(int bit) {
         if (bit >= 0 && bit < 60) {
@@ -17,7 +16,6 @@ public class BitMask {
         }
         if (bit >= 180 && bit < 240) {
             bits[3] |= ((long) 1 << (bit - 180));
-            return;
         }
     }
 
