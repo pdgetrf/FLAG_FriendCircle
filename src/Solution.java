@@ -1,5 +1,4 @@
 class Solution {
-
     public static int findCircleNum(int[][] M) {
         if (M == null || M.length == 0) {
             return 0;
